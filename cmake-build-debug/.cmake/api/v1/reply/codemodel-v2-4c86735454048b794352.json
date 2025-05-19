@@ -38,9 +38,9 @@
 			[
 				{
 					"directoryIndex" : 0,
-					"id" : "Comp::@6890427a1f51a3e7e1df",
-					"jsonFile" : "target-Comp-Debug-60732096b376b075d0f3.json",
-					"name" : "Comp",
+					"id" : "main.cpp::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-main.cpp-Debug-08290557e00a98e4215d.json",
+					"name" : "main.cpp",
 					"projectIndex" : 0
 				}
 			]

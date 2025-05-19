@@ -3,4 +3,9 @@ project(Comp)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(Comp main.cpp)
+add_executable(main.cpp
+        LexAnalyzer.cpp
+        LexAnalyzer.h
+        SyntaxAnalyzer.h
+        SyntaxAnalyzer.cpp
+        interpretor.cpp)
