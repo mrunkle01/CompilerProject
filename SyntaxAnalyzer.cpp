@@ -1,8 +1,6 @@
 #include "SyntaxAnalyzer.h"
 #include <istream>
-
-// erika
-bool SyntaxAnalyzer::vdec() { // GOOD
+bool SyntaxAnalyzer::vdec() { 
     if (tokitr != tokens.end()) {
         if (*tokitr != "t_var") {
             // no variables declared
@@ -28,8 +26,7 @@ bool SyntaxAnalyzer::addSymbol(string& value, string& lexeme) {
     }
     return false;
 }
-// evan
-int SyntaxAnalyzer::vars() { // GOOD
+int SyntaxAnalyzer::vars() {
     if(tokitr != tokens.end()) {
         if (*tokitr != "t_string" && *tokitr != "t_integer") {
             return 2;
@@ -64,8 +61,6 @@ int SyntaxAnalyzer::vars() { // GOOD
     }
     return 0;
 }
-
-// erika
 bool SyntaxAnalyzer::stmtlist() {
     if (tokitr != tokens.end()) {
         int stmtResult = stmt();
@@ -80,7 +75,6 @@ bool SyntaxAnalyzer::stmtlist() {
         }
     }
 }
-// mark
 int SyntaxAnalyzer::stmt() {
     if (tokitr != tokens.end() ){
         if (*tokitr != "t_while" && *tokitr != "t_if" && *tokitr != "t_output" && *tokitr != "t_input" && *tokitr != "t_id") {
@@ -93,7 +87,6 @@ int SyntaxAnalyzer::stmt() {
         return 0;
     }
 }
-// mark
 bool SyntaxAnalyzer::ifstmt() {
     if (tokitr != tokens.end()) {
         if (*tokitr == "t_if") {
@@ -120,7 +113,6 @@ bool SyntaxAnalyzer::ifstmt() {
     }
     return false;
 }
-// erika
 bool SyntaxAnalyzer::elsepart() {
     if (tokitr != tokens.end()) {
         if (*tokitr != "t_else") {
@@ -141,8 +133,6 @@ bool SyntaxAnalyzer::elsepart() {
     }
     return false;
 }
-
-// evan
 bool SyntaxAnalyzer::whilestmt() {
     if (tokitr != tokens.end()) {
         if (tokitr != tokens.end() && *tokitr == "t_while") {
@@ -170,7 +160,6 @@ bool SyntaxAnalyzer::whilestmt() {
     }
     return false;
 }
-// evan
 bool SyntaxAnalyzer::assignstmt() {
     if (tokitr != tokens.end()) {
         if (*tokitr == "t_id" && symboltable.contains(*lexitr)) {
@@ -188,7 +177,6 @@ bool SyntaxAnalyzer::assignstmt() {
     }
     return false;
 }
-//erika
 bool SyntaxAnalyzer::inputstmt() {
     if (tokitr != tokens.end()) {
         if (*tokitr == "t_input") {
@@ -207,7 +195,6 @@ bool SyntaxAnalyzer::inputstmt() {
     }
     return false;
 }
-// mark
 bool SyntaxAnalyzer::outputstmt() {
     if (tokitr != tokens.end()) {
         if (*tokitr == "t_output") {
@@ -234,7 +221,6 @@ bool SyntaxAnalyzer::outputstmt() {
     }
     return false;
 }
-// evan
 bool SyntaxAnalyzer::expr() {
     if (tokitr != tokens.end()) {
         if (simpleexpr()) {
@@ -249,8 +235,6 @@ bool SyntaxAnalyzer::expr() {
     }
     return false;
 }
-
-//mark
 bool SyntaxAnalyzer::simpleexpr() {
     if (tokitr != tokens.end()) {
         if (term()) {
@@ -272,8 +256,6 @@ bool SyntaxAnalyzer::simpleexpr() {
     }
     return false;
 }
-
-//  erika
 bool SyntaxAnalyzer::term() {
     if (tokitr != tokens.end()) {
         if ( (*tokitr == "t_id" && symboltable.contains(*lexitr)) || *tokitr == "t_number" || *tokitr == "t_text" ) {
@@ -292,7 +274,6 @@ bool SyntaxAnalyzer::term() {
     }
     return false;
 }
-//mark
 bool SyntaxAnalyzer::logicop() {
     if (tokitr != tokens.end()) {
         if (*tokitr == "s_and" || *tokitr == "s_or") {
@@ -302,8 +283,6 @@ bool SyntaxAnalyzer::logicop() {
     }
     return false;
 }
-
-// evan
 bool SyntaxAnalyzer::arithop(){
     if (tokitr != tokens.end()) {
         if (*tokitr == "s_plus" || *tokitr == "s_minus" ||  *tokitr == "s_div") {
@@ -313,8 +292,6 @@ bool SyntaxAnalyzer::arithop(){
     }
     return false;
 }
-
-// erika
 bool SyntaxAnalyzer::relop() {
     if (tokitr != tokens.end()) {
         if ( *tokitr == "s_lt" || *tokitr == "s_gt" || *tokitr == "s_eq" || *tokitr == "s_ne" ) {
@@ -324,7 +301,6 @@ bool SyntaxAnalyzer::relop() {
     }
     return false;
 }
-
 SyntaxAnalyzer::SyntaxAnalyzer(istream& infile) {
     string line;
     getline(infile, line);
@@ -336,7 +312,6 @@ SyntaxAnalyzer::SyntaxAnalyzer(istream& infile) {
         getline(infile, line);
     }
 }
-
 // pre: none
 // post: The lexemes/tokens have been parsed.
 // If an error occurs, a message prints indicating the token/lexeme pair
