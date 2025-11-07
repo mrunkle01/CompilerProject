@@ -68,7 +68,6 @@ class IdIntExpr : public Expr{
 		}
 		string toString(){return "id: " + id;}
 	};
-//Evan
 	class IdStringExpr : public Expr{
 	private:
 		string id;
@@ -79,7 +78,7 @@ class IdIntExpr : public Expr{
 		}
 		string toString(){return "id: " + id;}
 	};
-class PostIntFixExpr : public Expr { // erika
+class PostIntFixExpr : public Expr {
 	private:
 		vector<string> postfixExpr;  // tokens of operators
 	public:
@@ -144,7 +143,7 @@ class PostIntFixExpr : public Expr { // erika
 			}
 		}
 };
-class PostStringFixExpr : public Expr { // erika
+class PostStringFixExpr : public Expr {
 private:
 	vector<string> postfixExpr;  // tokens of operators
 public:
@@ -228,7 +227,6 @@ public:
 			else { return nullptr; }
 	}
 };
-
 class Stmt{ // statements are executed!
 private:
 	string name;
@@ -283,7 +281,6 @@ public:
 		pc++;
 	}
 };
-//Evan
 class InputStmt : public Stmt {
 	private:
 		string var;
@@ -368,7 +365,6 @@ public:
 		pc++;
 	}
 };
-//Evan
 class IfStmt : public Stmt {
 	private:
 		Expr *p_expr;
@@ -465,7 +461,6 @@ public:
 		elsetarget = t;
 	}
 };
-//Evan
 class GoToStmt : public Stmt {
 	private:
 		int target;
@@ -484,9 +479,6 @@ class GoToStmt : public Stmt {
 	};
 class Compiler {
 private:
-
-	// IFSTMT   if  (EXPR)  { STMTLIST } ELSEPART
-	//Evan
 	void buildIf() {
 		tokitr++;lexitr++; // skip (
 		Expr* cond = buildExpr();
@@ -566,14 +558,14 @@ private:
 			}
 		}
 	}
-	void buildAssign(){// erika
+	void buildAssign(){
 		string variable = *lexitr;
-		tokitr++;lexitr++; // =
-		tokitr++;lexitr++; // start of expression
+		tokitr++;lexitr++; 
+		tokitr++;lexitr++; 
 		Expr * p_expr = buildExpr();
 		insttable.push_back(new AssignStmt(variable,  p_expr));
 	}
-	//Evan
+
 	void buildInput() {
 		string var = "";
 		tokitr++; lexitr++;
@@ -583,8 +575,6 @@ private:
 		insttable.push_back(new InputStmt(var));
 	}
 	void buildOutput(){
-		// erika
-
 		tokitr++; lexitr++;
 		string s = *tokitr;
 		if (tokitr!=tokens.end() && *tokitr=="t_text") {
@@ -741,7 +731,6 @@ private:
 			getline(infile, line);
 		}
 	}
-	//Evan
 	void populateSymbolTable(istream& infile) {
 		string line;
 		getline(infile, line);
@@ -770,11 +759,6 @@ public:
 	// The compile method is responsible for getting the instruction
 	// table built.  It will call the appropriate build methods.
 	bool compile() {
-
-
-		// erika good I think
-		// The run method will execute the code in the instruction
-		// table.
 		buildStmt();
 		if (tokitr == tokens.end()) {
 			return true;
