@@ -1,4 +1,3 @@
-//Evan, Erika, Karen, Marvin, Mark, Alejandro, Kevin
 /*
  * The LexAnalyzer function scans through a source code file and produce a token/lexeme file where
  * each output line is formatted as token : lexeme
